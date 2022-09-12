@@ -128,7 +128,7 @@
         $('#articleLists').append(article);
     }
 
-    var WEBSITE_URL = "http://217.160.44.105/public"
+    var WEBSITE_URL = "http://217.160.44.105"
 
     //load child
     $(document).ready(function(e) {
@@ -166,7 +166,7 @@
             let territoryId = $("form [type=radio]:checked").val();
             $('#articleLists').html("searching....");
             $.ajax({
-                url: `${WEBSITE_URL}/public/api/articles/${territoryId}/${value}`,
+                url: `${WEBSITE_URL}/api/articles/${territoryId}/${value}`,
                 success: function( articles ) {
                     if (articles.data.length) {
                         $('#articleLists').html("");
