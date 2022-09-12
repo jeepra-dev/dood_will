@@ -55,7 +55,6 @@ class ArticleManager
     {
         $this->addArticle($territoryId);
         $children = $this->territoriesRepository->territoryChild($territoryId);
-        Debug::dump($children);
 
         foreach ($children as $child) {
             if ($child->hasChild()) {
