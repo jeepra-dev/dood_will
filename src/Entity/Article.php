@@ -10,7 +10,7 @@ use Doctrine\Common\Collections\Collection;
 
 
 /**
- * @ORM\Table(name="Article")
+ * @ORM\Table(name="article")
  * @ORM\Entity(repositoryClass="ArticleRepository")
  */
 class Article extends AbstractEntity

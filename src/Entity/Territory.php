@@ -10,7 +10,7 @@ use JetBrains\PhpStorm\Pure;
 
 
 /**
- * @ORM\Table(name="Territory")
+ * @ORM\Table(name="territory")
  * @ORM\Entity(repositoryClass="TerritoriesRepository")
  */
 class Territory extends AbstractEntity

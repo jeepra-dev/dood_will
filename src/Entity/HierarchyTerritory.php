@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="HierarchyTerritory")
+ * @ORM\Table(name="hierarchyterritory")
  */
 class HierarchyTerritory extends AbstractEntity
 {
