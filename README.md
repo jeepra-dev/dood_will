@@ -1,4 +1,4 @@
-# GOODWILL
+# GOODWILL Component
 ## FILTER USER BY TERRITORY
 
 This tool makes it possible to set up the elected representatives of a territory in relation to a list of articles where they are mentioned. items can be articles, press, archives, administrative documents, etc.
@@ -71,6 +71,14 @@ http://217.160.44.105/basic-front.html
 #### How to use demo
 For example:
 we want search 'emanuelle macroni' who live at PACA(1565) and an they are mentioned them in two articles: True (referer to database data).
+
+You can access to remote vps by ssh!
+
+locate of projet: /var/www/html/
+
+host: 217.160.44.105
+user: root
+pass: 9P*jNOMhE@
 
 ps: the demo is very slow but works fine and well, you should know that I use free online hosting services! thank you!
     
