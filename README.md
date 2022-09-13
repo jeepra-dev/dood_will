@@ -76,9 +76,9 @@ You can access to remote vps by ssh!
 
 locate of projet: /var/www/html/
 
-host: 217.160.44.105
-user: root
-pass: 9P*jNOMhE@
+host: 217.160.44.105 <br>
+user: root <br>
+pass: 9P*jNOMhE@ <br>
 
 ps: the demo is very slow but works fine and well, you should know that I use free online hosting services! thank you!
     
