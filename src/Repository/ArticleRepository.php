@@ -37,44 +37,22 @@ class ArticleRepository extends Repository
 
         //article
         $ors[] = $qb->expr()->andX(
-            $qb->expr()->orX($qb->expr()->eq('a.territory_id', ':id')),
             $qb->expr()->orX($qb->expr()->in('u.firstname', $haystacks)),
             $qb->expr()->orX($qb->expr()->in('u.lastname', $haystacks))
         );
 
-        //user
-        $ors1[] = $qb->expr()->andX(
-            $qb->expr()->orX($qb->expr()->in('u.firstname', $haystacks)),
-            $qb->expr()->orX($qb->expr()->in('u.lastname', $haystacks))
-        );
 
-        return $qb->select('a.content, a.territory_id, a.id, u.firstname, u.lastname, u.status, a.type')
-                   ->join(
-                       User::class,
-                       'u',
-                       Join::WITH,
-                       'u.territory_id = a.territory_id'
-                   )
-                    ->andWhere(
-                        $this->_em->getExpressionBuilder()->in(
-                        'a.territory_id',
-                        $this ->_em->createQueryBuilder()
-                            ->select('p.child_id')
-                            ->from(Territory::class, 'm')
-                            ->join(
-                                HierarchyTerritory::class,
-                                'p',
-                                Join::WITH,
-                                'p.parent_id = m.id'
+        $statement = "SELECT a.content, a.territory_id, a.id, u.firstname, u.lastname, u.status, a.type 
+                        FROM ".Article::class." a, ".User::class." u
+                        WHERE ((
+                            a.territory_id IN(
+                                SELECT p.child_id FROM ".HierarchyTerritory::class." p WHERE p.parent_id = {$territoryId}
                             )
-                            ->andWhere('p.parent_id = :id')
-                            ->getDQL()
+                             AND (".join(' AND ', $ors1).")
                         )
-                    )
-                    ->andWhere(join(' AND ', $ors1))
-                    ->orWhere(join(' AND ', $ors))
-                    ->setParameter('id', $territoryId)
-                    ->getQuery()
-                    ->getresult();
+                        OR (".join(' AND ', $ors1)." AND a.territory_id = {$territoryId} )) 
+                        AND (".join(' AND ', $ors).")";
+
+        return  $this->_em->createQuery($statement)->getResult();
     }
 }
